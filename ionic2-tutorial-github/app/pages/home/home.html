@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Inicio</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+	<ion-list>
+		<ion-item>
+			<ion-label floating>Usuario</ion-label>
+			<ion-input [(ngModel)]="username" type="text"></ion-input>
+		</ion-item>
+	</ion-list>
+	<div padding>
+		<button block (click)=getRepos()>Buscar</button>
+		<button block (click)=presentActionSheet()>prueba</button>
+	</div>
+	<ion-card *ngFor="let repo of foundRepos" (click)="goToDetails(repo)">
+		<ion-card-header>
+			{{repo.name}}
+		</ion-card-header>
+		<ion-card-content>
+			Descripción: {{repo.description}}
+			<p>Creado: {{repo.created_at | date:'fullDate'}}</p>			
+		</ion-card-content>
+	</ion-card>
+</ion-content>
