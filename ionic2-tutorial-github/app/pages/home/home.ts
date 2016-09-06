@@ -1,24 +1,66 @@
 import {DetallePage} from '../detalle/detalle';
 import {Page, NavController} from 'ionic-angular';
 import {GitHubService} from '../../services/github';
-import {Platform, ActionSheetController } from 'ionic-angular';
+import {Platform, ActionSheetController, LoadingController } from 'ionic-angular';
 
 @Page({ 
   templateUrl: 'build/pages/home/home.html',
   providers: [GitHubService]
 })
 export class HomePage {
-  public foundRepos: any[];
+  public foundRepos: any[]; 
+  public user: string;
   public username: string;
+  public stars: string;
 
-  constructor(private github: GitHubService, private navCtrl: NavController, private actionSheetCtrl: ActionSheetController,public platform: Platform) {
+  constructor(
+    private github: GitHubService, 
+    private navCtrl: NavController, 
+    private actionSheetCtrl: ActionSheetController,
+    public platform: Platform, 
+    private loadingCtrl: LoadingController) {
     
   }
-
+  
   getRepos() {
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'Buscando...'
+    });
+    loadingPopup.present();
+    if (this.username === undefined) {
+      loadingPopup.dismiss();
+      return;
+    }
+    this.github.getUser(this.username).subscribe(
+      data => {
+        this.user = data.json();
+        console.log (data.json());
+      },
+      err => {
+        console.error(err);
+      }
+    );
+    this.github.getStarred(this.username).subscribe(
+      data => {
+        console.log('estrellas: ' + data.json().length);
+        this.stars = data.json().length;
+      },
+      err => {
+
+      }
+    );
     this.github.getRepos(this.username).subscribe(
-      data => this.foundRepos = data.json(),
-      err => console.error(err)
+      data => {
+          // I've added this timeout just to show the loading popup more time
+          setTimeout(() => {
+            this.foundRepos = data.json();
+            loadingPopup.dismiss();
+          }, 1000);
+      },
+      err => {
+        loadingPopup.dismiss();
+        console.error(err);
+      }
     );
     
   }
@@ -71,6 +113,6 @@ export class HomePage {
         }
       ]
     });
-    actionSheet.present()
+    actionSheet.present();
   }
 }

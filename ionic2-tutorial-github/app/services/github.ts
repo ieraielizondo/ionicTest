@@ -18,4 +18,10 @@ export class GitHubService {
 		return this.http.get(
 			repo.url + '/readme', {headers: headers});
 	}
+	getUser(username) {
+		return this.http.get('https://api.github.com/users/' + username );
+	}
+	getStarred(username) {
+		return this.http.get('https://api.github.com/users/' + username + '/starred' );
+	}
 }
