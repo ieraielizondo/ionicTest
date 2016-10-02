@@ -42,7 +42,6 @@ export class HomePage {
     );
     this.github.getStarred(this.username).subscribe(
       data => {
-        console.log('estrellas: ' + data.json().length);
         this.stars = data.json().length;
       },
       err => {

@@ -6,19 +6,16 @@ import {GitHubService} from '../../services/github';
   providers: [GitHubService]
 })
 export class DetallePage {
-	public readme= '';
+	public content: any[];
 	public repo;
   
 constructor(private github: GitHubService, private navCtrl: NavController, navParams: NavParams) {
 	this.repo = navParams.get('repo');
-    this.github.getDetails(this.repo).subscribe(
-      data => this.readme = data.text(),
+    this.github.getRepoContent(this.repo).subscribe(
+      data => {this.content = data.json();
+        console.log(data.json());},
       err => {
-        if (err.status == 404) {
-          this.readme = 'Este repositorio no tiene README.md';
-        } else {
           console.error(err);
-        }
       },
       () => console.log('getDetalle completado.')
     );

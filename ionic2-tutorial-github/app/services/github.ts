@@ -24,4 +24,7 @@ export class GitHubService {
 	getStarred(username) {
 		return this.http.get('https://api.github.com/users/' + username + '/starred' );
 	}
+	getRepoContent(repo){
+		return this.http.get(repo.url + '/contents');
+	}
 }

@@ -17,33 +17,33 @@
 	</div>
 	<ion-card *ngFor="let repo of foundRepos" (click)="goToDetails(repo)">
 		<ion-list>		
-		<ion-item>
-			<ion-avatar item-left>
-				<img src="{{user.avatar_url}}" alt="">
-			</ion-avatar>
-			<h2>{{user.name}}</h2>
-			<p>@{{user.login}}</p>
-			<ion-row no-padding>
-				<ion-col text-center>
-					<strong>{{user.followers}}</strong>
-					<p>Followers</p>
-				</ion-col>
-				<ion-col text-center>
-					<strong>{{stars}}</strong>
-					<p>Starred</p>
-				</ion-col>
-				<ion-col text-center>
-					<strong>{{user.following}}</strong>
-					<p>Following</p>
-				</ion-col>
-			</ion-row>
-		</ion-item>
+			<ion-item>
+				<ion-avatar item-left>
+					<img src="{{user.avatar_url}}" alt="">
+				</ion-avatar>
+				<h1>{{user.name}}</h1>
+				<h3>@{{user.login}}</h3>
+				<ion-row no-padding>
+					<ion-col text-center>
+						<strong>{{user.followers}}</strong>
+						<p>Followers</p>
+					</ion-col>
+					<ion-col text-center>
+						<strong>{{stars}}</strong>
+						<p>Starred</p>
+					</ion-col>
+					<ion-col text-center>
+						<strong>{{user.following}}</strong>
+						<p>Following</p>
+					</ion-col>
+				</ion-row>
+			</ion-item>
 		<ion-card-header>
 			<h1><strong>{{repo.name}}</strong></h1>
 		</ion-card-header>
 		<ion-card-content>
 			Descripción: {{repo.description}}
-			<p>Creado: {{repo.created_at | date:'fullDate'}}</p>			
+			<p>Creado: {{repo.created_at | date:'fullDate'}}</p>		
 		</ion-card-content>
 		</ion-list>
 	</ion-card>
