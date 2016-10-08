@@ -11,12 +11,12 @@ export class GitHubService {
 		return this.http.get('https://api.github.com/users/' + username + '/repos');
 	}
 
-	getDetails(repo) {
+	getFile(repo) {
 		let headers = new Headers();
 		headers.append(
 			'Accept', 'application/vnd.github.VERSION.html');
 		return this.http.get(
-			repo.url + '/readme', {headers: headers});
+			repo.url , {headers: headers});
 	}
 	getUser(username) {
 		return this.http.get('https://api.github.com/users/' + username );
@@ -24,7 +24,12 @@ export class GitHubService {
 	getStarred(username) {
 		return this.http.get('https://api.github.com/users/' + username + '/starred' );
 	}
-	getRepoContent(repo){
-		return this.http.get(repo.url + '/contents');
+	getRepoContent(repo,isfirst){
+		if(isfirst){
+			return this.http.get(repo.url + '/contents');
+		}else{
+			return this.http.get(repo.url );
+		}
+		
 	}
 }

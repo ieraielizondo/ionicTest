@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let file of content">
+  <ion-card *ngFor="let file of content" (click)="goToDetails(file,false)">
     <ion-card-header>
       <h1>{{file.name}}</h1>
       <p>{{repo.name}}/{{file.path}}</p>

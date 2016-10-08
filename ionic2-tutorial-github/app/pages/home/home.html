@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
 	<ion-navbar>
 		<ion-title>Inicio</ion-title>
 	</ion-navbar>
@@ -8,7 +8,7 @@
 	<ion-list>
 		<ion-item>
 			<ion-label floating>Usuario</ion-label>
-			<ion-input [(ngModel)]="username" type="text"></ion-input>
+			<ion-input [(ngModel)]="username" type="text" ></ion-input>
 		</ion-item>
 	</ion-list>
 	<div padding>
@@ -43,7 +43,8 @@
 		</ion-card-header>
 		<ion-card-content>
 			Descripción: {{repo.description}}
-			<p>Creado: {{repo.created_at | date:'fullDate'}}</p>		
+			<p>Creado: {{repo.created_at | date:'fullDate'}}</p>
+			<p>{{repo.contents_url}}</p>		
 		</ion-card-content>
 		</ion-list>
 	</ion-card>

@@ -65,7 +65,7 @@ export class HomePage {
   }
 
   goToDetails(repo) {
-    this.navCtrl.push(DetallePage, {repo: repo});
+    this.navCtrl.push(DetallePage, {repo: repo,isFirst: true});
   }
 
   presentActionSheet() {
