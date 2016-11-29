@@ -32,4 +32,7 @@ export class GitHubService {
 		}
 		
 	}
+	getRepoLang(url){
+		return this.http.get(url);
+	}
 }

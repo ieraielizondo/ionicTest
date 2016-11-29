@@ -45,7 +45,7 @@ export class HomePage {
         this.stars = data.json().length;
       },
       err => {
-
+        console.log("error GetStarred(). Error: "+err);
       }
     );
     this.github.getRepos(this.username).subscribe(
